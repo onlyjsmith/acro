@@ -1,13 +1,9 @@
 class Request < ActiveRecord::Base
 
-  def search_acronyms
-    puts "here"
-    self.inspect
-    puts "nothing?"
-    # puts @text
-    return @text
+  def search_for_acronyms
     words = split_words(text)
     unique_acronyms = find_unique_acronyms(words)
+    search_known_acronyms(unique_acronyms)
     search_definitions(unique_acronyms)
   end
 
@@ -21,10 +17,18 @@ class Request < ActiveRecord::Base
     acronyms
   end
 
+  def search_definitions(unique_acronyms)
+    unique_acronyms.each do |unique|
+      Acronym.where(:abbreviation = a)
+    end
+  end
+    
   def search_definitions(acronyms) 
     definitions = {}
     acronyms.each do |a|
-      if @list[a].nil?
+      
+      if Acronym.where(:abbreviation => a).nil?
+      # if @list[a].nil?
         then definitions[a] = "Unknown"
         puts "a is " + a.to_s
         @unknown << a

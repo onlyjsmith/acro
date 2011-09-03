@@ -83,6 +83,6 @@ class RequestsController < ApplicationController
   
   def results
     @request = Request.find(params[:id])  
-    @results = @request.search_acronyms  
+    @results = @request.search_for_acronyms  
   end
 end
