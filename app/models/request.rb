@@ -15,7 +15,7 @@ class Request < ActiveRecord::Base
   def find_unique_acronyms(words)
     unique_acronyms = []
     words.each{|word| unique_acronyms << word if is_acronym?(word)}#word == word.upcase}
-    # TODO: Find a better matcher for acronyms: e.g. including B.B.C. and so on, and ignoring A at start of word?
+    # TODO: Find a better matcher for acronyms: e.g. including B.B.C. and so on, and ignoring A at start of word?  include hyphens, etc, also lower-case letters
     # TODO: also a way of handling words which might be acronyms, but are uncertain 
     # TODO: check that it's not including duplicates, and if not why not - there's nothing excluding them yet!
     unique_acronyms
