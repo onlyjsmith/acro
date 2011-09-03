@@ -3,7 +3,8 @@ class Request < ActiveRecord::Base
   def search_for_acronyms
     words = split_words(text)
     unique_acronyms = find_unique_acronyms(words)
-    search_known_acronyms(unique_acronyms)
+    # known_acronyms = find_known_acronyms(unique_acronyms)
+    # find_definitions(known_acronyms
     search_definitions(unique_acronyms)
   end
 
@@ -12,40 +13,33 @@ class Request < ActiveRecord::Base
   end
 
   def find_unique_acronyms(words)
-    acronyms = []
-    words.each{|word| acronyms << word if word == word.upcase}
-    acronyms
+    acronyms_to_search_for = []
+    words.each{|word| acronyms_to_search_for << word if word == word.upcase}
+    # TODO: Find a better matcher for acronyms: e.g. including B.B.C. and so on
+    # TODO: also a way of handling words which might be acronyms, but are uncertain 
+    # TODO: check that it's not including duplicates, and if not why not - there's nothing excluding them yet!
+    acronyms_to_search_for
   end
 
-  def search_definitions(unique_acronyms)
-    unique_acronyms.each do |unique|
-      Acronym.where(:abbreviation = a)
-    end
-  end
+  # def search_definitions(unique_acronyms)
+  #   unique_acronyms.each do |unique|
+  #     Acronym.where(:abbreviation => a)
+  #   end
+  # end   
     
   def search_definitions(acronyms) 
     definitions = {}
     acronyms.each do |a|
-      
-      if Acronym.where(:abbreviation => a).nil?
+      found_acronym = Acronym.where(:abbreviation => a)
+      if found_acronym.nil?
       # if @list[a].nil?
         then definitions[a] = "Unknown"
-        puts "a is " + a.to_s
-        @unknown << a
-      else definitions[a] = @list[a]
+        # @unknown << a
+      else definitions[a] = found_acronym
       end
-    end
-    #binding.pry
+    end 
+    binding.pry
     definitions
   end
-
-  def print_output(defs)
-    puts "Definitions for you are:"
-    defs.each do |d|
-      puts d[0].to_s + " | " + d[1].to_s unless d[0].empty?
-    end
-  end
-
-
 
 end

@@ -35,5 +35,5 @@ end
 
 group :development do
   gem 'irbtools-more'
-  
+  gem 'pry'
 end
