@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p> 
+                                 
+<h1>Listing RESULTS</h1>
+
+<table>
+  <tr>
+    <th>Abbreviation</th>
+    <th>Definition</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @results.each do |result| %>
+  <tr>
+    <%= @results %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Request', new_request_path %>

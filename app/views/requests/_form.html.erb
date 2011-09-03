@@ -1,0 +1,20 @@
+<%= form_for(@request) do |f| %>
+  <% if @request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+<!-- TODO: Put in form -->  
+    <%= f.text_area :text %>
+    <p>Full text of form here</p>
+    <%= f.submit %>
+  </div>
+<% end %>

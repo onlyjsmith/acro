@@ -1,4 +1,14 @@
 Acro::Application.routes.draw do
+  resources :requests
+
+  resources :lists
+
+  resources :acronyms
+
+  root :to => 'requests#index'
+  
+  match 'results/:id' => 'requests#results', :as => :results
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
