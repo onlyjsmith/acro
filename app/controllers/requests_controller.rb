@@ -41,16 +41,18 @@ class RequestsController < ApplicationController
   # POST /requests.json
   def create
     @request = Request.new(params[:request])
-    @text = params[:text]
-    respond_to do |format|
+    # @text = params[:text]
+    # respond_to do |format|
       if @request.save
-        format.html { redirect_to @request, notice: 'Request was successfully created.' }
-        format.json { render json: @request, status: :created, location: @request }
+        redirect_to results_path(@request.id)
+        
+        # format.html { redirect_to @request, notice: 'Request was successfully created.' }
+        # format.json { render json: @request, status: :created, location: @request }
       else
         format.html { render action: "new" }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
-    end
+    # end
   end
 
   # PUT /requests/1
@@ -83,5 +85,11 @@ class RequestsController < ApplicationController
   
   def results
     @results = Request.find(params[:id]).search_for_acronyms
-  end
+  end        
+  
+  # def results_from_create(request_id)
+  #   debugger
+  #   @results = Request.find(request_id).search_for_acronyms      
+  #   render :results
+  # end
 end
