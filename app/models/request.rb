@@ -32,7 +32,7 @@ class Request < ActiveRecord::Base
   # end   
     
   def search_definitions(unique_acronyms) 
-    definitions = []
+    definitions = []  # TODO: This must return an array of objects, so that EDIT link from results_show page works
     unique_acronyms.each do |a|
       found_acronym = Acronym.find_by_abbreviation(a)
       # TODO: Add this adding new unknown acronym back in
