@@ -11,9 +11,10 @@
     <th></th>
   </tr>
 
-<% @results.each do |result| %>
+<% @results.each do |result| %> 
   <tr>
-    <%= @results %>
+    <td><%= result.abbreviation %></td>
+    <td><%= result.definition %></td>
   </tr>
 <% end %>
 </table>

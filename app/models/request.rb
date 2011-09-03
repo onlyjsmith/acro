@@ -13,12 +13,16 @@ class Request < ActiveRecord::Base
   end
 
   def find_unique_acronyms(words)
-    acronyms_to_search_for = []
-    words.each{|word| acronyms_to_search_for << word if word == word.upcase}
-    # TODO: Find a better matcher for acronyms: e.g. including B.B.C. and so on
+    unique_acronyms = []
+    words.each{|word| unique_acronyms << word if is_acronym?(word)}#word == word.upcase}
+    # TODO: Find a better matcher for acronyms: e.g. including B.B.C. and so on, and ignoring A at start of word?
     # TODO: also a way of handling words which might be acronyms, but are uncertain 
     # TODO: check that it's not including duplicates, and if not why not - there's nothing excluding them yet!
-    acronyms_to_search_for
+    unique_acronyms
+  end
+
+  def is_acronym?(word)
+    word == word.upcase && word.size > 1 ? true : false
   end
 
   # def search_definitions(unique_acronyms)
@@ -27,19 +31,19 @@ class Request < ActiveRecord::Base
   #   end
   # end   
     
-  def search_definitions(acronyms) 
-    definitions = {}
-    acronyms.each do |a|
+  def search_definitions(unique_acronyms) 
+    definitions = []
+    unique_acronyms.each do |a|
       found_acronym = Acronym.where(:abbreviation => a)
-      if found_acronym.nil?
-      # if @list[a].nil?
-        then definitions[a] = "Unknown"
-        # @unknown << a
-      else definitions[a] = found_acronym
-      end
+      # binding.pry
+      # add_new_unknown if found_acronym.nil?
+      definitions << found_acronym
     end 
-    binding.pry
     definitions
+  end                       
+  
+  def add_new_unknown(abbreviation)
+    Acronym.create(:abbreviation => abbreviation, :definition => 'Unknown')
   end
 
 end
