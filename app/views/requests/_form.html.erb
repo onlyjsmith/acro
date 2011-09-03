@@ -15,6 +15,7 @@
 <!-- TODO: Put in form -->  
     <%= f.text_area :text %>
     <p>Full text of form here</p>
-    <%= f.submit %>
+    <%= f.submit %>      
+    <p><strong><%= link_to "Find results", results_path(@request) %></strong></p>  
   </div>
 <% end %>

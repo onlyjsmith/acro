@@ -34,10 +34,10 @@ class Request < ActiveRecord::Base
   def search_definitions(unique_acronyms) 
     definitions = []
     unique_acronyms.each do |a|
-      found_acronym = Acronym.where(:abbreviation => a)
-      # binding.pry
-      # add_new_unknown if found_acronym.nil?
-      definitions << found_acronym
+      found_acronym = Acronym.find_by_abbreviation(a)
+      # TODO: Add this adding new unknown acronym back in
+      # add_new_unknown(a) if found_acronym.nil?
+      definitions << [found_acronym.abbreviation, found_acronym.definition]
     end 
     definitions
   end                       

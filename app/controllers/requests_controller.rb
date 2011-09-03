@@ -82,8 +82,6 @@ class RequestsController < ApplicationController
   end
   
   def results
-    debugger
     @results = Request.find(params[:id]).search_for_acronyms
-
   end
 end
