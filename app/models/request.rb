@@ -38,9 +38,10 @@ class Request < ActiveRecord::Base
       # TODO: Add this adding new unknown acronym back in
       if found_acronym.nil?
         then add_new_unknown(a) && definitions << [a,'Unknown'] # TODO: Make this less yucky, more DRY
-      else definitions << [found_acronym.abbreviation, found_acronym.definition]
+      else definitions << found_acronym #[found_acronym.abbreviation, found_acronym.definition]
       end
-    end 
+    end  
+    debugger
     definitions
   end                       
   

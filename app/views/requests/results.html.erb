@@ -13,8 +13,8 @@
 
 <% @results.each do |result| %> 
   <tr>
-    <td><%= result[0] %></td>
-    <td><%= result[1] %></td>
+    <td><%= result.abbreviation %></td>
+    <td><%= result.definition %></td>
   </tr>
 <% end %>
 </table>
