@@ -18,7 +18,9 @@ end
 
 gem 'jquery-rails'
 # gem 'in_place_editing'            
-gem "in_place_editing", "~> 1.1.1"
+# gem "in_place_editing", "~> 1.1.1"  
+gem "on_the_spot"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

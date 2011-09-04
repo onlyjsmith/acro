@@ -1,9 +1,17 @@
 Acro::Application.routes.draw do
-  resources :requests
+  resources :requests do
+    collection do
+      post :update_attribute_on_the_spot
+    end
+  end
 
   resources :lists
 
-  resources :acronyms
+  resources :acronyms do
+    collection do
+      post :update_attribute_on_the_spot
+    end
+  end
 
   root :to => 'requests#index'
   
