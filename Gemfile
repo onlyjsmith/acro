@@ -17,7 +17,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+# gem 'in_place_editing'            
+gem "in_place_editing", "~> 1.1.1"
 # Use unicorn as the web server
 # gem 'unicorn'
 

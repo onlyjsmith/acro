@@ -41,7 +41,7 @@ class Request < ActiveRecord::Base
       else definitions << found_acronym #[found_acronym.abbreviation, found_acronym.definition]
       end
     end  
-    debugger
+    # debugger
     definitions
   end                       
   

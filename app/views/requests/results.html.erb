@@ -11,10 +11,11 @@
     <th></th>
   </tr>
 
-<% @results.each do |result| %> 
+<% @results.each do |acronym| %>
   <tr>
-    <td><%= result.abbreviation %></td>
-    <td><%= result.definition %></td>
+    <td><%= acronym.abbreviation %></td>
+    <% debugger %>
+    <td><%= in_place_editor_field :acronym, :definition %></td>
   </tr>
 <% end %>
 </table>
