@@ -5,7 +5,7 @@ Acro::Application.routes.draw do
 
   resources :acronyms
 
-  root :to => 'requests#index'
+  root :to => 'requests#new'
   
   match 'results/:id' => 'requests#results', :as => :results
 

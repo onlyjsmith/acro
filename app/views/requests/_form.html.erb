@@ -12,7 +12,8 @@
   <% end %>
 
   <div class="actions">
-    <%= f.text_area :text %>
-    <%= f.submit "Search for acronyms", :disable_with => 'Search for acronymsing...' %>
+    <%= f.text_area :text, :rows => "20", :cols => "100"%>
+    <p></p>
+    <%= f.submit "Search for acronyms", :disable_with => 'Acronymsing...' %>
   </div>
 <% end %>

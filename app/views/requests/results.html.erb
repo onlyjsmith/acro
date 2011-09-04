@@ -11,11 +11,13 @@
     <th></th>
   </tr>
 
-<% @results.each do |acronym| %>
+<% @results.each do |result| %>
   <tr>
-    <td><%= acronym.abbreviation %></td>
-    <% debugger %>
-    <td><%= in_place_editor_field :acronym, :definition %></td>
+    <td><%= result.abbreviation %></td>
+    <td>
+      <%= result.definition %>  
+      <%= link_to "(edit)", edit_acronym_path(result) if result.definition == "Unknown" %>
+    </td>
   </tr>
 <% end %>
 </table>

@@ -1,5 +1,4 @@
 class AcronymsController < ApplicationController
-  in_place_edit_for :acronym, :definition
   
   # GET /acronyms
   # GET /acronyms.json
