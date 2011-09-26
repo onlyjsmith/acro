@@ -1,15 +1,18 @@
 class Request < ActiveRecord::Base
-  attr_accessor :words, :acronyms
+  attr_accessor :acronyms
 
   def search_for_acronyms
-    split_words
-    find_acronyms
-    filter_unique# = filter_unique(find_acronyms)
+    @acronyms = text.split(" ").select{|v|v.gsub(".","") =~ /[A-Z][A-Z]+/}.each{|v|v.gsub!(".","")}.each{|v|v.gsub!(/\A[\d_\W]+|[\d_\W]+\Z/, '')}.uniq.sort
+    # split_words
+    # find_acronyms
+    # filter_unique# = filter_unique(find_acronyms)
     search_definitions
+    
+    # this seems to work in IRB: text.split(" ").select{|v|v.gsub(".","") =~ /[A-Z][A-Z]+/}
   end
 
   def split_words
-    @words = text.split(/[^a-zA-Z]/).each{|t| t.gsub(/\W/,'NOTHING')}
+    @words = text.split(/[^a-zA-Z]/).each{|t| t.gsub!(/\W/,'NOTHING')}
   end
 
   def find_acronyms
@@ -37,13 +40,13 @@ class Request < ActiveRecord::Base
   def search_definitions 
     definitions = []  # TODO: This must return an array of AR objects not just array, so that EDIT link from results_show page works
     # debugger
-    @acronyms.sort!
+    # @acronyms.sort!
     @acronyms.each do |a|
       found_acronym = Acronym.find_by_abbreviation(a)
       # TODO: Add this adding new unknown acronym back in
-      if found_acronym.nil?
-        then add_new_unknown(a) && definitions << [a,'Unknown'] # TODO: Make this less yucky, more DRY
-      else definitions << found_acronym #[found_acronym.abbreviation, found_acronym.definition]
+      if found_acronym
+        then definitions << found_acronym #[found_acronym.abbreviation, found_acronym.definition]                                             
+      else definitions << [add_new_unknown(a).abbreviation,'Unknown'] # TODO: Make this less yucky, more DRY
       end
     end  
     # debugger
