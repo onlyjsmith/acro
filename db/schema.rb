@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110903112457) do
+ActiveRecord::Schema.define(:version => 20110930161402) do
 
   create_table "acronyms", :force => true do |t|
     t.string   "abbreviation"
     t.string   "definition"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_acronym"
   end
 
   create_table "lists", :force => true do |t|

@@ -44,11 +44,11 @@ class Request < ActiveRecord::Base
     @acronyms.each do |a|
       found_acronym = Acronym.find_by_abbreviation(a)
       # debugger # TODO: Add this adding new unknown acronym back in
-      if found_acronym
-        else add_new_unknown(a)
-          found_acronym = Acronym.find_by_abbreviation(a)
+      unless found_acronym
+        add_new_unknown(a)
+        found_acronym = Acronym.find_by_abbreviation(a)
       end
-      definitions << found_acronym #[found_acronym.abbreviation, found_acronym.definition]                                             
+      definitions << found_acronym if found_acronym.is_acronym != false#[found_acronym.abbreviation, found_acronym.definition]                                             
       # else definitions << [add_new_unknown(a).abbreviation,'Unknown'] # TODO: Make this less yucky, more DRY
       # end
     end  

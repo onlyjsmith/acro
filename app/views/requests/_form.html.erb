@@ -11,9 +11,8 @@
     </div>
   <% end %>
 
+    <%= f.text_area :text, :rows => "15", :class => "xxlarge"%>
   <div class="actions">
-    <%= f.text_area :text, :rows => "20", :cols => "100"%>
-    <p></p>
-    <%= f.submit "Search for acronyms", :disable_with => 'Acronymsing...' %>
+    <%= f.submit "Generate acronym table", :disable_with => 'Acronymsing...', :class => "btn primary large" %>
   </div>
 <% end %>

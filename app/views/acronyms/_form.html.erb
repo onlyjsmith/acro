@@ -10,14 +10,18 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :abbreviation %><br />
-    <%= f.text_field :abbreviation %>
+  
+  <div class="clearfix">
+    <div class="field">
+      <%= f.label :abbreviation %><br />
+      <div class="input"><%= f.text_field :abbreviation %></div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :definition %><br />
-    <%= f.text_field :definition %>
+  <div class="clearfix">
+    <div class="field">
+      <%= f.label :definition %><br />
+      <div class="input"><%= f.text_field :definition %></div>
+    </div>
   </div>
   <div class="actions">
     <%= f.submit %>

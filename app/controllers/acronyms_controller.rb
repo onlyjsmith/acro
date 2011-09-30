@@ -72,9 +72,12 @@ class AcronymsController < ApplicationController
 
   # DELETE /acronyms/1
   # DELETE /acronyms/1.json
+
+  # Doesn't destroy
   def destroy
     @acronym = Acronym.find(params[:id])
-    @acronym.destroy
+    @acronym.update_attributes(:is_acronym => '0')
+    # @acronym.destroy
 
     respond_to do |format|
       format.html { redirect_to acronyms_url }

@@ -1,22 +1,24 @@
 <p id="notice"><%= notice %></p> 
                                  
-<h1>Listing RESULTS</h1>
+<h1>Table of acronyms</h1>
 
 <table>
   <tr>
-    <th>Abbreviation</th>
+    <th>Acronym</th>
     <th>Definition</th>
-    <th></th>
-    <th></th>
-    <th></th>
+
   </tr>
 
 <% @results.each do |result| %>
   <tr>
     <td><%= result.abbreviation %></td>
     <td>
-      <%= result.definition %>  
-      <%= link_to "(edit)", edit_acronym_path(result) if result.definition == "Unknown" %>
+      <% if result.definition == "Unknown" %>
+        <%= link_to "Add unknown", edit_acronym_path(result) %> 
+        <%= link_to "Not an acronym", result, confirm: 'Are you sure?', method: :delete %>
+        <% else %>
+      <%= link_to result.definition, edit_acronym_path(result) %>  
+      <% end %>
     </td>
   </tr>
 <% end %>
